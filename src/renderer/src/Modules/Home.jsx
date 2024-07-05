@@ -9,7 +9,12 @@ import { GiFogLight } from "react-icons/gi";
 import { PiSirenFill, PiCubeTransparent, PiLightbulbFill } from "react-icons/pi";
 
 export function Home() {
-	const sourceSel = entertainmentBus((state) => state.sourceSel);
+	
+	//const sourceSel = entertainmentBus((state) => state.sourceSel);	
+	
+	// DEBUG //
+	let sourceSel = "Bluetooth"
+
 	const VIN = vehicleInfo((state) => state.VIN);
 	const modelID = vehicleInfo((state) => state.Model_id);
 	const modelName = vehicleInfo((state) => state.ModelName);
@@ -24,6 +29,8 @@ export function Home() {
 	const driver = vehicleInfo((state) => state.Driver);
 	const transmission = vehicleInfo((state) => state.Transmission);
 	const engine = vehicleInfo((state) => state.Engine);
+
+	
 
 	return (
 		<>
@@ -165,7 +172,8 @@ function Relay() {
 }
 
 function Radio() {
-	const fmStation = entertainmentBus((state) => state.fmStation);
+	let fmStation = entertainmentBus((state) => state.fmStation);
+	
 	const dabStation = entertainmentBus((state) => state.dabStation);
 	const source = entertainmentBus((state) => state.source);
 	const text = entertainmentBus((state) => state.text);
@@ -234,23 +242,55 @@ function Radio() {
 }
 
 function Bluetooth() {
-	return (
-		<>
-			<div className='absolute flex w-full h-full'>
-				<div className='grid grid-rows-2 justify-evenly h-full w-full text-center'>
-					<div className='grid grid-cols-1 justify-evenly h-full w-full text-center text-lg'>
-						{/* Bluetooth Station */}
-						<p>Bluetooth</p>
-					</div>
-					<div className='grid grid-cols-1 justify-evenly h-full w-full text-center text-lg'>
-						{/* Bluetooth Text */}
-						<p>Figure this out</p>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+  // Example Data
+  const mediaPhoneName = "Xiaomi Mi 9";
+  const trackName = "Spotify - This is a song";
+  const artistName = "Test Name";
+  const volume = 43;
+  const maxVolume = 100;
+  const segments = 25; 
+  const segmentVolume = maxVolume / segments;
+
+  return (
+    <>
+      <div className="absolute flex w-full h-full">
+        <div className="grid grid-rows-2 ml-2 h-full w-full text-center">
+          <div className="underline grid grid-cols-1 justify-evenly h-full w-full text-center text-lg">
+            <p>Bluetooth</p>
+			<p className="underline">Volume: {volume}</p>
+            <div className="w-[90%] h-[70%] flex justify-between justify-self-center">
+              {Array.from({ length: segments }).map((_, index) => {
+                const filledSegments = Math.floor(volume / segmentVolume);
+                const remainingVolume = volume % segmentVolume;
+                let bgColor = "bg-black";
+                let opacity;
+
+                if (index < filledSegments) {
+                  bgColor = "bg-green-500";
+                  opacity = "opacity-100";
+                } else if (index === filledSegments && remainingVolume > 0) {
+                  bgColor = "bg-green-500";
+                  opacity = `opacity-${Math.round((remainingVolume / segmentVolume) * 100)}`;
+				}
+				else {
+					opacity = "opacity-100"
+				}
+
+                return <div key={index} className={`w-full h-full mx-[1px] ${bgColor} ${opacity}`}></div>;
+              })}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 justify-evenly h-full w-full text-left text-lg pb-">
+            <p>Phone: {mediaPhoneName}</p>
+            <p>Track: {trackName}</p>
+            <p>Artist: {artistName}</p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
+
 
 function Aux() {
 	return (

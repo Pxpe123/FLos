@@ -15,7 +15,7 @@ export function Layout() {
 	const setFirstTimeSetup = vehicleInfo((state) => state.setFirstTimeSetup);
 	// const gradient = (primaryColorSet + " " + secondaryColorSet).toString();
 
-	if (firstTimeSetup) {
+	if (false) {
 		return <FirstTimeSetup />;
 	} else {
 		return <Nav />;
@@ -75,15 +75,13 @@ function Nav() {
 	return (
 		<div className={`h-screen w-screen ${textColorSet}`}>
 			<div
-				className={`${
-					active ? "" : "hidden"
-				} fade-in bg-slate-300 opacity-90 transition-all z-20 absolute rounded-xl h-[90%] w-[90%] left-[5%] top-[5%] flex items-center justify-center text-center text-8xl text-white`}>
+				className={`${active ? "" : "hidden"
+					} fade-in bg-slate-300 opacity-90 transition-all z-20 absolute rounded-xl h-[90%] w-[90%] left-[5%] top-[5%] flex items-center justify-center text-center text-8xl text-white`}>
 				<ParkingSensors />
 			</div>
 			<div
-				className={`${
-					volumeChange ? "" : "hidden"
-				} fade-in bg-gray-500 rounded-3xl transition-all z-20 absolute align-middle justify-center items-center m-auto h-[75%] w-[75%] left-[12.5%] top-[12.5%]`}>
+				className={`${volumeChange ? "" : "hidden"
+					} fade-in bg-gray-500 rounded-3xl transition-all z-20 absolute align-middle justify-center items-center m-auto h-[75%] w-[75%] left-[12.5%] top-[12.5%]`}>
 				<div className='align-top h-1/4 text-center text-white text-2xl'>
 					Beep Boop - Volume Change
 				</div>

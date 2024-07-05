@@ -4,6 +4,7 @@ export function eb486(msg) {
 	const arr = [...msg.data];
 
 	var source = arr[3];
+
 	if (source == 7 || source == 206 || source == 39) {
 		//Radio Bands
 		entertainmentBus.sourceSel = "Radio";

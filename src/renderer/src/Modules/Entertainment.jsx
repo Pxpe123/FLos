@@ -2,7 +2,9 @@ import "./Style.css";
 import { entertainmentBus } from "../Stores/entertainmentBus";
 
 export function Entertainment() {
-  const sourceSel = entertainmentBus((state) => state.sourceSel);
+  let sourceSel = entertainmentBus((state) => state.sourceSel);
+
+  sourceSel = "Bluetooth"
 
   return (
     <>
@@ -30,6 +32,7 @@ function Radio() {
   const block = entertainmentBus((state) => state.block);
   // eslint-disable-next-line no-unused-vars
   const active = entertainmentBus((state) => state.active);
+
 
   const menuItems = [
     {
@@ -63,11 +66,10 @@ function Radio() {
             return (
               <div
                 key={index}
-                className={`${
-                  x === y
-                    ? "text-blue-500 text-3xl"
-                    : "text-white text-2xl opacity-50"
-                } h-max`}
+                className={`${x === y
+                  ? "text-blue-500 text-3xl"
+                  : "text-white text-2xl opacity-50"
+                  } h-max`}
               >
                 {m.name}
               </div>
@@ -96,6 +98,19 @@ function Radio() {
 }
 
 function Bluetooth() {
+  //const mediaPhoneName = entertainmentBus((state) => state.mediaPhoneName);
+  //const trackName = entertainmentBus((state) => state.trackName);
+  //const artistName = entertainmentBus((state) => state.artistName);
+  //const volume = entertainmentBus((state) => state.volume);
+
+
+  // I Think this data is correctly responding
+  //const mediaPhoneName = "Xoami Mi 9";
+  //const trackName = "Spotify - This is a song"
+  //const artistName = "Test Name"
+  //const volume = 100
+
+  
   return (
     <>
       <div className="fadeIn grid grid-rows-2 justify-evenly h-full w-full text-center">
